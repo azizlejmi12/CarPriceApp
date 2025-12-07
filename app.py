@@ -184,6 +184,10 @@ if submitted:
         price_pred = np.expm1(y_pred_log)
         prix_estime = float(price_pred[0])
 
+        # ---------- Ajustement manuel basé sur la puissance ----------
+        if engine_power > 100:
+            prix_estime *= (1 + (engine_power - 100) * 0.005)
+
         st.markdown(f"<div class='result-box'>💰 Prix estimé : {prix_estime:,.0f} TND</div>", unsafe_allow_html=True)
 
         # ---------- Exemples de voitures proches ----------
